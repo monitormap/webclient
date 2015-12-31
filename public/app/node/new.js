@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('monitormapApp')
-	.controller('NewCtrl', ['$scope','socket',function ($scope, socket) {
+	.controller('NewCtrl', ['$scope','$rootScope','socket','config',function ($scope, $rootScope,socket,config) {
 		$scope.list = [];
 		var load = function(){
 			socket.emit('node:list:new',function(result){
@@ -9,7 +9,7 @@ angular.module('monitormapApp')
 					$scope.list = result.list;
 				}
 			});
-		}
+		};
 		load();
 		socket.on('event::node:set:create',function(result){
 			$scope.list.push(result);
