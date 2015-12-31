@@ -1,0 +1,44 @@
+table.ui.table.striped
+	thead
+		tr
+			th Name
+			th Devices
+			th
+				button.ui.button.icon(ng-click='setObj({new:true})',ng-if='passphrase')
+					i.icon.add
+	tbody
+		tr(ng-if='obj.new')
+			td(colspan=3)
+				form.ui.form(form='form',ng-submit='set()')
+					.field
+						label Name
+						input(ng-model='obj.name')
+					.field
+						label Devices
+						select.ui.search.dropdown(ng-model='obj.macs',ng-options='i.nodes as i.name for i in list',multiple)
+					button.ui.button.labeled.icon(ng-class='{"loading":loading}')
+						i.icon.save
+						| Save
+		tr(ng-repeat='item in glist')
+			td(ng-if='obj.id==item.id',colspan=3)
+				form.ui.form(form='form',ng-submit='set()')
+					.field
+						label Name
+						input(ng-model='obj.name')
+					.field
+						label Devices
+						select.ui.search.dropdown(ng-model='obj.nodes',ng-options='i.mac as i.name for i in list',multiple)
+					button.ui.button.labeled.icon(ng-class='{"loading":loading}')
+						i.icon.save
+						| Save
+			td(ng-if='obj.id!=item.id')
+				a(ui-sref="node.detailgroup({name:item.name})") {{item.name}}
+			td(ng-if='obj.id!=item.id')
+				.ui.label(ng-repeat='i in item.nodes')
+					span(ng-repeat='li in list',ng-if="li.mac==i") {{li.name}}
+			td(ng-if='obj.id!=item.id')
+				button.ui.button.icon(ng-click='setObj(item)',ng-if='passphrase')
+					i.icon.edit
+	tfoot
+		tr
+			th(colspan=3) count: {{glist.length}}

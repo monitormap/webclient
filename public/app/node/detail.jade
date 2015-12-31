@@ -1,0 +1,7 @@
+h1.header
+	.content {{obj.name}}
+		.ui.sub.header {{obj.mac}}
+
+
+h4 RRD
+rrd(ng-if="obj.mac",path="/node/{{obj.mac}}.rrd")

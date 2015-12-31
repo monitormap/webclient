@@ -1,0 +1,15 @@
+h1 {{obj.name}}
+
+h4 RRD
+rrd(ng-if="obj.name",path="/node/{{obj.name}}.rrd")
+
+h4 Devices:
+table.ui.table
+	thead
+		tr
+			th Name
+			th Mac
+	tbody
+		tr(ng-repeat='i in obj.nodes')
+			td(ng-repeat='li in list',ng-if="li.mac==i") {{li.name}}
+			td {{i}}

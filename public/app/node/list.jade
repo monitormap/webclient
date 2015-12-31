@@ -1,0 +1,63 @@
+.scrolltable
+	table.ui.small.orange.compact.table.striped(ts-wrapper)
+		thead
+			tr
+				th(ts-criteria='name|lowercase',ts-default,rowspan=2) Name
+				th(ts-criteria='updatedAt|lowercase',ts-default,rowspan=2) Status
+				th(colspan=3) 2.4 Ghz
+				th(colspan=3) 5 Ghz
+				th(colspan=2) Eth
+				th
+			tr
+				th(ts-criteria='channel_24|lowercase',ts-default) Channel
+				th(ts-criteria='channel_24_power|lowercase',ts-default) Power
+				th(ts-criteria='client_24|lowercase',ts-default) Client
+
+				th(ts-criteria='channel_50|lowercase',ts-default) Channel
+				th(ts-criteria='channel_50_power|lowercase',ts-default) Power
+				th(ts-criteria='client_50|lowercase',ts-default) Client
+
+				th(ts-criteria='ports_gb|lowercase',ts-default) Gbit%
+				th(ts-criteria='ports|lowercase',ts-default) All
+				th
+		tbody
+			tr(ng-repeat='item in list',ts-repeat)
+				td
+					a.ui.header(ui-sref='node.detail({mac:item.mac})') {{item.name}}
+					div.sub.header {{item.mac}}
+				td
+					i.icon.green.check(ng-if="status(item.timedate)")
+					i.icon.red.delete(ng-if="!status(item.timedate)")
+
+				td.right.aligned.warning(ng-if='!passphrase') {{item.channel_24}}
+				td.warning(ng-if='passphrase')
+					.ui.input.fluid
+						input(type='number',ng-model='item.channel_24')
+				td.right.aligned(ng-if='!passphrase') {{item.channel_24_power}}
+				td(ng-if='passphrase')
+					.ui.input.fluid
+						input(type='number',ng-model='item.channel_24_power')
+				td.right.aligned.positive {{item.client_24}}
+
+				td.right.aligned.warning(ng-if='!passphrase') {{item.channel_50}}
+				td.right.aligned.warning(ng-if='passphrase')
+					.ui.input.fluid
+						input(type='number',ng-model='item.channel_50')
+				td.right.aligned(ng-if='!passphrase') {{item.channel_50_power}}
+				td.right.aligned(ng-if='passphrase')
+					.ui.input.fluid
+						input(type='number',ng-model='item.channel_50_power')
+				td.right.aligned.positive {{item.client_50}}
+
+				td.right.aligned {{item.ports>0?(item.ports_gb*100)/item.ports:0}}
+				td.right.aligned {{item.ports}}
+				td
+					button.ui.button.icon(ng-if='passphrase',ng-click='set(item)')
+						i.icon.save
+		tfoot
+			tr
+				th(colspan=2) {{list.length}}
+				th.right.aligned(colspan=3) {{count('client_24')}}
+				th.right.aligned(colspan=3) {{count('client_50')}}
+				th.right.aligned(colspan=2) {{count('ports_gb')}}/{{count('ports')}}
+				th

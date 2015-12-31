@@ -1,0 +1,7 @@
+/node_modules
+/public/bower_components
+/build
+/tmp
+/.tmp
+/public/config.js
+*.log
