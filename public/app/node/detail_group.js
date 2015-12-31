@@ -19,8 +19,4 @@ angular.module('monitormapApp')
 		socket.emit('node:list',function(result){
 			$scope.list = result.list;
 		});
-		$scope.set = function(){
-			socket.emit('node:set',$rootScope.passphrase,$scope.obj,function(){
-			});
-		};
 	}]);

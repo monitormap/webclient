@@ -15,14 +15,18 @@ angular.module('monitormapApp')
 		socket.emit('node:list',function(result){
 			$scope.list = result.list;
 		});
-		socket.emit('node:group:list',function(result){
-			$scope.glist = result.list;
-		});
+		var load = function(){
+			socket.emit('node:group:list',function(result){
+				$scope.glist = result.list;
+			});
+		};
+		load();
 		$scope.set = function(){
 			socket.emit('node:group:set',$rootScope.passphrase,$scope.obj,function(result){
 				if(result.s){
 					$scope.setObj(emptyEntry);
 				}
+				load();
 			});
 		};
 	}]);

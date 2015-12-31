@@ -3,11 +3,14 @@
 angular.module('monitormapApp')
 	.controller('ListCtrl', ['$scope','$rootScope','socket','config',function ($scope, $rootScope,socket,config) {
 		$scope.list = [];
-		socket.emit('node:list',function(result){
-			$scope.list = result.list;
-		});
+		var load = function(){
+			socket.emit('node:list',function(result){
+				$scope.list = result.list;
+			});
+		};
+		load();
 		$scope.status = function(a){
-			if(new Date(a) > new Date(new Date() - config.offlineTime)){
+			if(new Date(a).getTime() > new Date(new Date().getTime() - config.offlineTime).getTime()){
 				return true;
 			}
 			return false;
@@ -23,6 +26,7 @@ angular.module('monitormapApp')
 		};
 		$scope.set = function(obj){
 			socket.emit('node:set',$rootScope.passphrase,obj,function(){
+				load();
 			});
 		};
 	}]);
