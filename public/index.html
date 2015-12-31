@@ -9,8 +9,8 @@
 		<!-- endbuild-->
 		<!-- build:css({.tmp,public}) app/app.css-->
 		<link rel="stylesheet" href="app/app.css">
-			<!-- injector:css-->
-			<!-- endinjector-->
+			<!-- injector:css -->
+			<!-- endinjector -->
 		<!-- endbuild-->
 	</head>
 	<body>
@@ -33,28 +33,30 @@
 			<script src="bower_components/angular-tablesort/js/angular-tablesort.js"></script>
 			<!-- endbower-->
 		<!-- endbuild-->
+		<!-- build:js(public) app/rrd.js-->
+		<script src="lib/rrd/binaryXHR.js"></script>
+		<script src="lib/rrd/rrdFile.js"></script>
+		<script src="lib/rrd/rrdFlotSupport.js"></script>
+		<script src="lib/rrd/rrdFlot.js"></script>
+		<script src="lib/flot/jquery.flot.js"></script>
+		<script src="lib/flot/jquery.flot.selection.js"></script>
+		<script src="lib/flot/jquery.flot.tooltip.js"></script>
+		<!-- endbuild-->
 		<script src="config.js"></script>
 		<!-- build:js({.tmp,public}) app/app.js-->
 			<script src="app/app.js"></script>
-			<!-- injector:js-->
-			<script src="lib/rrd/binaryXHR.js"></script>
-			<script src="lib/rrd/rrdFile.js"></script>
-			<script src="lib/rrd/rrdFlotSupport.js"></script>
-			<script src="lib/rrd/rrdFlot.js"></script>
-			<script src="lib/flot/jquery.flot.js"></script>
-			<script src="lib/flot/jquery.flot.selection.js"></script>
-			<script src="lib/flot/jquery.flot.tooltip.js"></script>
+			<!-- injector:js -->
+			<script src="app/index.js"></script>
+			<script src="app/node/detail.js"></script>
+			<script src="app/node/detail_group.js"></script>
+			<script src="app/node/group.js"></script>
+			<script src="app/node/index.js"></script>
+			<script src="app/node/list.js"></script>
+			<script src="app/node/new.js"></script>
+			<script src="app/passphrase.js"></script>
 			<script src="directive/dropdown.js"></script>
 			<script src="directive/rrd.js"></script>
-			<script src="app/index.js"></script>
-			<script src="app/passphrase.js"></script>
-			<script src="app/node/index.js"></script>
-			<script src="app/node/new.js"></script>
-			<script src="app/node/list.js"></script>
-			<script src="app/node/detail.js"></script>
-			<script src="app/node/group.js"></script>
-			<script src="app/node/detail_group.js"></script>
-			<!-- endinjector-->
+			<!-- endinjector -->
 		<!-- endbuild-->
 	</body>
 </html>

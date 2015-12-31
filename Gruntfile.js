@@ -136,7 +136,7 @@ module.exports = function (grunt) {
 		usemin: {
 			html: ['build/{,*/}*.html'],
 			css: ['build/{,*/}*.css'],
-			js: ['build/{,*/}*.js'],
+			js: ['build/{app,vendor}.js','build/*/*.js'],
 			options: {
 				assetsDirs: [
 					'build',
@@ -348,7 +348,7 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'public/index.html': [
-							['{.tmp,public}/{app,directive,lib}/**/*.js',
+							['{.tmp,public}/{app,directive}/**/*.js',
 							 '!{.tmp,public}/app/app.js']
 						]
 				}
